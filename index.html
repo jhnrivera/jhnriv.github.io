@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Portfolio</h1>
+           
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#my-free-time">My Free Time</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Hi, I'm John Lloyd D. Rivera, 20 years old. This is my midterm project. I'm a first-year college student at EVSU. We haven't discussed this yet about HTML and CSS, and this is only self-learning. By the way, this is my first website that I made. Thank you. Okay, let's go to my hobbies. I'd like to play guitar and draw. Mostly,  I play online games and edit my game's highlights, and my fav color is blue because I like apples haha.</p>
+        </div>
+    </section>
+
+    <section id="my-free-time">
+        <div class="container">
+            <h2>My Free Time</h2>
+            <div class="my-free-time">
+                <h3>How I Spend My Free Time</h3>
+                <p>I spend my free time with my family, doing household chores, playing guitar and playing online games and edit my highligths.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="video">
+        <div class="container">
+            <h2>Videos</h2>
+          <h1>"Example videos :)"</h1>
+            <video controls class="video">  
+              
+                <source src="bid1.mp4" type="video/mp4">
+                
+            </video>
+            <video controls class="video">
+                <source src="bid2.mp4" type="video/mp4">
+              </video>
+          <video controls class="video">
+            <source src="ml1.mp4" type="video/mp4">
+          </video>
+          <video controls class="video">
+            <source src="ml2.mp4" type="video/mp4">
+          </video>
+          <script>
+  var videos = document.getElementsByClassName("video");
+  
+  for(let i = 0; i < videos.length; i++){
+    videos[i].addEventListener('play', pauseOthers, false);
+  }
+  
+  function pauseOthers(item){
+    for(let i = 0; i < videos.length; i++){
+      if(videos[i] != item.target){
+        videos[i].pause();
+      }
+    }
+  }
+</script>
+          <h2>Guitar</h2>
+        <video controls class="video" onclick="playVideo(this)">  
+    <source src="g2.mp4" type="video/mp4">
+</video>
+<video controls class="video" onclick="playVideo(this)">
+    <source src="g1.mp4" type="video/mp4">
+</video>
+
+<script>
+  var videos = document.getElementsByClassName("video");
+  
+  for(let i = 0; i < videos.length; i++){
+    videos[i].addEventListener('play', pauseOthers, false);
+  }
+  
+  function pauseOthers(item){
+    for(let i = 0; i < videos.length; i++){
+      if(videos[i] != item.target){
+        videos[i].pause();
+      }
+    }
+  }
+</script>
+
+        </div>
+    </section>
+
+    <section id="image">
+        <div class="container" id="image-container">
+            <h2>Image</h2>
+            <img src="ml.jpg" alt="Example Image" class="image">
+            <img src="2.jpg" alt="Example Image" class="image">
+            <img src="3.jpg" alt="Example Image" class="image">
+        </div>
+    </section>
+
+    <section id="contact">
+    <div class="container">
+        <h2>Contact Me</h2>
+        <p>Email: jldimaanorivera0@gmail.com</p>
+        <p>Tiktok: <a href="https://www.tiktok.com/@potatoescheaps?_t=8kUzUQYIbsA&_r=1">potatoescheaps</a></p>
+      <p>Facebok: <a href="https://www.facebook.com/itsmepododo?mibextid=ZbWKwL">John Rivera</a></p>
+      <p>Phone: 09260371136</p>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">
+      <p>&copy; 2024 My Portfolio</p>
+      
+      <div class="footer-comment-section">
+        <h2>Feedback</h2>
+        <input type="text" id="commentInput" placeholder="Write a comment...">
+        <button onclick="addComment()">Submit</button>
+        <div id="commentsContainer">
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+          
+<script>
+  // Retrieve comments from LocalStorage or initialize an empty array
+  var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+  // Function to add a new comment
+  function addComment() {
+    var input = document.getElementById('commentInput');
+    var text = input.value;
+    input.value = '';
+
+    var comment = {
+      author: 'Viewer',
+      text: text
+    };
+
+    comments.push(comment);
+    localStorage.setItem('comments', JSON.stringify(comments));
+
+    renderComments();
+  }
+
+  // Function to delete a comment
+  function deleteComment(index) {
+    var comment = comments[index];
+
+    if (comment.author === 'Viewer') {
+      comments.splice(index, 1);
+      localStorage.setItem('comments', JSON.stringify(comments));
+
+      renderComments();
+    } else {
+      alert('You can only delete your own comments.');
+    }
+  }
+
+  // Function to render the comments
+  function renderComments() {
+    var container = document.getElementById('commentsContainer');
+    container.innerHTML = '';
+
+    comments.forEach(function (comment, index) {
+      var commentElem = document.createElement('div');
+      commentElem.className = 'footer-comment';
+
+      var author = document.createElement('span');
+      author.className = 'footer-comment-author';
+      author.textContent = comment.author + ': ';
+
+      var commentText = document.createElement('span');
+      commentText.className = 'footer-comment-text';
+      commentText.textContent = comment.text;
+
+      var deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-button';
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = function () {
+        deleteComment(index);
+      };
+
+      commentElem.appendChild(author);
+      commentElem.appendChild(commentText);
+
+      if (comment.author === 'Viewer') {
+        commentElem.appendChild(deleteButton);
+      }
+
+      container.appendChild(commentElem);
+    });
+  }
+
+  // Render comments when the page loads
+  document.addEventListener('DOMContentLoaded', function () {
+    renderComments();
+  });
+</script>
+
+  
+</body>
+</html>
