@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+          <img src="avatar.jpg" class="avatar">
+          <img src="hello.gif">
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#my-free-time">My Free Time</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+          
+ 
+<div id="visitorCount">Loading...</div>
+
+
+          
+        </div>
+    </header>
+<script>
+        // Function to update the visitor count
+        function updateVisitorCount() {
+            // Check if local storage is supported
+            if (typeof(Storage) !== "undefined") {
+                // Check if the visitor count exists in local storage
+                if (localStorage.getItem("visitorCount")) {
+                    // Increment the visitor count
+                    var count = parseInt(localStorage.getItem("visitorCount")) + 1;
+                    localStorage.setItem("visitorCount", count);
+                } else {
+                    // If the visitor count doesn't exist, initialize it to 1
+                    localStorage.setItem("visitorCount", 1);
+                }
+                // Display the visitor count
+                document.getElementById("visitorCount").textContent = "Visitors: " + localStorage.getItem("visitorCount");
+            } else {
+                // If local storage is not supported, show an error message
+                document.getElementById("visitorCount").textContent = "Sorry, your browser does not support local storage.";
+            }
+        }
+
+        // Call the function to update the visitor count
+        updateVisitorCount();
+    </script>
+
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Hi, I'm John Lloyd D. Rivera, 20 years old. This is my midterm project. I'm a first-year college student at EVSU. We haven't discussed this yet about HTML and CSS, and this is only self-learning. By the way, this is my first website that I made. Thank you. Okay, let's go to my hobbies. I'd like to play guitar and draw. Mostly,  I play online games and edit my game's highlights, and my fav color is blue because I like apples haha.</p>
+        </div>
+    </section>
+
+    <section id="my-free-time">
+        <div class="container">
+            <h2>My Free Time</h2>
+            <div class="my-free-time">
+                <p>How I Spend My Free Time</p>
+                <p>I spend my free time with my family, doing household chores, playing guitar, playing online games, and editing my highlights. If you want to see some of my videos, just scroll down.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="video">
+        <div class="container">
+            <h2>Example Videos</h2>
+            <video controls class="video">  
+              
+                <source src="bid1.mp4" type="video/mp4">
+                
+            </video>
+            <video controls class="video">
+                <source src="bid2.mp4" type="video/mp4">
+              </video>
+          <video controls class="video">
+            <source src="ml1.mp4" type="video/mp4">
+          </video>
+          <video controls class="video">
+            <source src="ml2.mp4" type="video/mp4">
+          </video>
+          <script>
+  var videos = document.getElementsByClassName("video");
+  
+  for(let i = 0; i < videos.length; i++){
+    videos[i].addEventListener('play', pauseOthers, false);
+  }
+  
+  function pauseOthers(item){
+    for(let i = 0; i < videos.length; i++){
+      if(videos[i] != item.target){
+        videos[i].pause();
+      }
+    }
+  }
+</script>
+          <h2>Guitar</h2>
+        <video controls class="video" onclick="playVideo(this)">  
+    <source src="git2.mp4" type="video/mp4">
+</video>
+<video controls class="video" onclick="playVideo(this)">
+    <source src="git1.mp4" type="video/mp4">
+</video>
+
+<script>
+  var videos = document.getElementsByClassName("video");
+  
+  // Function to pause videos that are not in the viewport
+  function pauseIfNotInView(video) {
+    var bounding = video.getBoundingClientRect();
+    if (bounding.top >= window.innerHeight || bounding.bottom <= 0) {
+      video.pause();
+    }
+  }
+  
+  // Add event listener to each video for play event
+  for (let i = 0; i < videos.length; i++) {
+    videos[i].addEventListener('play', pauseOthersAndCheckView, false);
+  }
+  
+  // Function to pause other videos and check if the current video is in view
+  function pauseOthersAndCheckView(item) {
+    for (let i = 0; i < videos.length; i++) {
+      if (videos[i] != item.target) {
+        videos[i].pause();
+      }
+    }
+    pauseIfNotInView(item.target);
+  }
+  
+  // Check if videos are in view on page load and scroll
+  window.addEventListener('load', checkVideosInView);
+  window.addEventListener('scroll', checkVideosInView);
+  
+  // Function to check if videos are in view
+  function checkVideosInView() {
+    for (let i = 0; i < videos.length; i++) {
+      pauseIfNotInView(videos[i]);
+    }
+  }
+</script>
+
+
+        </div>
+    </section>
+
+<section id="image">
+  <div class="container" id="image-container">
+    <h2>Image</h2>
+</div>
+    <div class="image-gallery">
+      <img src="k1.jpg" alt="Image 1" class="image">
+      <img src="k2.jpg" alt="Image 2" class="image">
+      <img src="k3.jpg" alt="Image 3" class="image">
+    </div>
+</div>
+    <p>"Hello classmate si dodo ni haha It's been a while since our Grade 12 days,  I hope this message finds you well. I've been thinking about all the fun times we had,Those memories still bring to me, I hope y'all are doing well and great, and don't stop what makes happy sa inyo kinabuhi ron, never stop pursuing  ur dream in life. thank you for those priceless memories. never forget u mga miga og migo specially to our advidser."</p>
+  </div>
+</div>
+
+  <div class="container" id="image-container">
+    <div class="image-gallery">
+      <img src="k4.jpg" alt="Image 3" class="image">
+      <img src="k9.jpg" alt="Image 4" class="image">
+      <img src="k5.jpg" alt="Image 5" class="image">
+    </div>
+    <p>Even ga college nako, I thought I couldn't do it because my high school friend is not there to support and help me, but we need to accept becoming college. Losing your high school friend is part of life; we need to become independent to survive in college. And then I met this kind of classmate who was supporting each other and being kind. </p>
+  <div class="audio-container">
+  <audio id="audio" controls autoplay loop>
+    <source src="as it was.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+      
+     <img src="heart.gif">
+      <p>double tap the cat then little bit scroll up</p>
+      <p>"It doesn't mean I forget my high school friends; remember, you were always part of my life. Remember, you'll always be more than a friend, like a brother and sister to me. It suddenly happens because we are not on the same path in life to achieve what we want in our dreams."</p>
+  </div>
+</section>
+      
+
+<script>
+  const audio = document.getElementById('audio');
+
+  // Function to check if the audio element is in the viewport
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // Function to handle audio visibility
+  function handleVisibility() {
+    if (isElementInViewport(audio)) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+
+  // Check audio visibility on page load
+  handleVisibility();
+
+  // Check audio visibility on scroll and resize
+  window.addEventListener('scroll', handleVisibility);
+  window.addEventListener('resize', handleVisibility);
+</script>
+
+
+
+
+    <section id="contact">
+    <div class="container">
+        <h2>Contact Me</h2>
+        <p>Email: jldimaanorivera0@gmail.com</p>
+        <p>Tiktok: <a href="https://www.tiktok.com/@potatoescheaps?_t=8kUzUQYIbsA&_r=1">potatoescheaps</a></p>
+      <p>Facebok: <a href="https://www.facebook.com/itsmepododo?mibextid=ZbWKwL">John Rivera</a></p>
+    </div>
+      
+</section>
+
+
+<footer>
+    <div class="container">
+      <p>&copy; 2024 </p>
+      
+      <div class="footer-comment-section">
+        <h2>Feedback</h2>
+        <input type="text" id="commentInput" placeholder="Write a comment...">
+        <button onclick="addComment()">Submit</button>
+        <div id="commentsContainer">
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+      
+
+          
+<script>
+  // Retrieve comments from LocalStorage or initialize an empty array
+  var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+  // Function to add a new comment
+  function addComment() {
+    var input = document.getElementById('commentInput');
+    var text = input.value;
+    input.value = '';
+
+    var comment = {
+      author: 'Viewer',
+      text: text
+    };
+
+    comments.push(comment);
+    localStorage.setItem('comments', JSON.stringify(comments));
+
+    renderComments();
+  }
+
+  // Function to delete a comment
+  function deleteComment(index) {
+    var comment = comments[index];
+
+    if (comment.author === 'Viewer') {
+      comments.splice(index, 1);
+      localStorage.setItem('comments', JSON.stringify(comments));
+
+      renderComments();
+    } else {
+      alert('You can only delete your own comments.');
+    }
+  }
+
+  // Function to render the comments
+  function renderComments() {
+    var container = document.getElementById('commentsContainer');
+    container.innerHTML = '';
+
+    comments.forEach(function (comment, index) {
+      var commentElem = document.createElement('div');
+      commentElem.className = 'footer-comment';
+
+      var author = document.createElement('span');
+      author.className = 'footer-comment-author';
+      author.textContent = comment.author + ': ';
+
+      var commentText = document.createElement('span');
+      commentText.className = 'footer-comment-text';
+      commentText.textContent = comment.text;
+
+      var deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-button';
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = function () {
+        deleteComment(index);
+      };
+
+      commentElem.appendChild(author);
+      commentElem.appendChild(commentText);
+
+      if (comment.author === 'Viewer') {
+        commentElem.appendChild(deleteButton);
+      }
+
+      container.appendChild(commentElem);
+    });
+  }
+
+  // Render comments when the page loads
+  document.addEventListener('DOMContentLoaded', function () {
+    renderComments();
+  });
+
+  // Initial render for users without interaction
+  renderComments();
+      
+      
+      
+      window.addEventListener('scroll', function() {
+  var audioElement = document.getElementById('myAudio');
+  var imageSection = document.getElementById('image');
+  
+  var rect = imageSection.getBoundingClientRect();
+  var isInView = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
+
+  if (isInView) {
+    audioElement.play();
+  } else {
+    audioElement.pause();
+  }
+});
+</script>
+
+
+  
+</body>
+</html>
